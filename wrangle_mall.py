@@ -57,8 +57,8 @@ def overview(df):
 
 def outlier_function(df, cols, k):
     for col in df[cols]:
-        q1 = df.annual_income.quantile(0.25)
-        q3 = df.annual_income.quantile(0.75)
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
         iqr = q3 - q1
         upper_bound =  q3 + k * iqr
         lower_bound =  q1 - k * iqr     
