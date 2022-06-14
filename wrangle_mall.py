@@ -84,6 +84,8 @@ def handle_outliers(df, cols, k):
 
         #remove rows with an outlier in that column
         df = df[(df[col] < col_upper_bound) & (df[col] > col_lower_bound)]
+    
+    return df
 
 def handle_missing_values(df, prop_required_column, prop_required_row):
     n_required_column = round(df.shape[0] * prop_required_column)
@@ -113,8 +115,8 @@ def get_modeling_data(scale_data=False):
     print()
     
     print('Before removing outliers, %d rows, %d cols' % df.shape)
-    handle_outliers(df, ['age', 'spending_score', 'annual_income'], 1.5)
-    print('After dropping nulls, %d rows, %d cols' % df.shape)
+    df = handle_outliers(df, ['age', 'spending_score', 'annual_income'], 1.5)
+    print('After dropping outliers, %d rows, %d cols' % df.shape)
     
     print()
     
